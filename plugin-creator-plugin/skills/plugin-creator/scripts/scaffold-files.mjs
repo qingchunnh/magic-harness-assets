@@ -74,6 +74,6 @@ export function scaffoldFiles(name, components) {
   }
   for (const directory of ["scripts", "assets"])
     if (components.includes(directory)) files.set(`${directory}/.gitkeep`, "");
-  files.set(".zcode-plugin/plugin.json", JSON.stringify(manifest, null, 2) + "\n");
+  files.set(".magic-harness-plugin/plugin.json", JSON.stringify(manifest, null, 2) + "\n");
   return files;
 }

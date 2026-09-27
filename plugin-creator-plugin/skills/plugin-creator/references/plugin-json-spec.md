@@ -1,6 +1,6 @@
 # ZCode plugin and marketplace reference
 
-A plugin uses `.zcode-plugin/plugin.json`. Its `name` is its stable identifier; this scaffold uses lower-case hyphenated names, at most 64 characters, and initial version `0.1.0`.
+A plugin uses `.magic-harness-plugin/plugin.json`. Its `name` is its stable identifier; this scaffold uses lower-case hyphenated names, at most 64 characters, and initial version `0.1.0`.
 
 ```json
 {
@@ -46,7 +46,7 @@ Use this development layout. When Node is already available, `upsert-dev-marketp
 <workspace>/plugins/
   marketplace.json       name: dev-<workspace>-<canonical-path-hash>
   my-plugin/
-    .zcode-plugin/plugin.json
+    .magic-harness-plugin/plugin.json
     skills/my-plugin/SKILL.md
 ```
 

@@ -10,7 +10,7 @@ zcode --plugin-dir /absolute/path/to/ios-simulator-plugin
 
 When enabled, ZCode loads:
 
-- `.zcode-plugin/plugin.json` for plugin metadata and skill/command paths.
+- `.magic-harness-plugin/plugin.json` for plugin metadata and skill/command paths.
 - `.mcp.json` for the stdio MCP server.
 - `skills/ios-dev/SKILL.md` for the model workflow.
 - `commands/ios-dev.md` as a convenience slash command.
@@ -21,13 +21,13 @@ ZCode bundles this package as the official `ios-simulator@zcode-plugins-official
 plugin. Enable the plugin to project its skill, slash command, and MCP server
 into the session.
 At startup ZCode copies the packaged plugin files into
-`~/.zcode/cli/plugins/cache/zcode-plugins-official/ios-simulator/0.1.0/` and
+`~/.magic-harness/cli/plugins/cache/zcode-plugins-official/ios-simulator/0.1.0/` and
 runs the MCP server from that cache directory. SEA builds rewrite the official
 plugin's ZCode manifest to launch the cached MCP server through ZCode's internal
 plugin host, so the server uses the embedded Node.js runtime. Third-party
 plugins are not rewritten automatically and keep their own declared `command`.
 
-Example `~/.zcode/cli/config.json` entry:
+Example `~/.magic-harness/cli/config.json` entry:
 
 ```json
 {

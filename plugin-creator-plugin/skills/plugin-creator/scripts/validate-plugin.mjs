@@ -14,7 +14,7 @@ function outside(root, path) {
 export async function preflightPlugin(path) {
   const root = await realpath(path);
   const errors = [];
-  const manifestPath = await realpath(join(root, ".zcode-plugin", "plugin.json"));
+  const manifestPath = await realpath(join(root, ".magic-harness-plugin", "plugin.json"));
   if (outside(root, manifestPath)) return ["Manifest symlink escapes outside plugin"];
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
   const resources = [];
