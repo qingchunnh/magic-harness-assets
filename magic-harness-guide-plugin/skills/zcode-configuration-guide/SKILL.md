@@ -1,15 +1,15 @@
 ---
 name: zcode-configuration-guide
-description: Use when configuring ZCode's extension resources (MCP servers, slash commands, skills, hooks, and plugins) or instruction files such as AGENTS.md in the ZCode client. Explains where each resource is configured at the user and workspace scope, the discovery order, precedence, and merge rules, plus guidance on which location to choose. Use when someone asks how to add an MCP server, command, skill, hook, plugin, or AGENTS.md instructions, where a configuration file lives, why a configuration is not taking effect, or needs routing to a specific diagnostic skill.
+description: Use when configuring Magic Harness's extension resources (MCP servers, slash commands, skills, hooks, and plugins) or instruction files such as AGENTS.md in the Magic Harness client. Explains where each resource is configured at the user and workspace scope, the discovery order, precedence, and merge rules, plus guidance on which location to choose. Use when someone asks how to add an MCP server, command, skill, hook, plugin, or AGENTS.md instructions, where a configuration file lives, why a configuration is not taking effect, or needs routing to a specific diagnostic skill.
 ---
 
-# ZCode Configuration Guide
+# Magic Harness Configuration Guide
 
-ZCode supports five types of extension resources, plus AGENTS.md instruction files. This skill is the **map**: it tells you where each resource is configured and how conflicts are resolved. For "something is not working, how do I fix it," follow the routing to the `diagnosing-*` skills at the end.
+Magic Harness supports five types of extension resources, plus AGENTS.md instruction files. This skill is the **map**: it tells you where each resource is configured and how conflicts are resolved. For "something is not working, how do I fix it," follow the routing to the `diagnosing-*` skills at the end.
 
 ## How things are configured
 
-There are two ways to work with configuration in the ZCode client, and this plugin serves both:
+There are two ways to work with configuration in the Magic Harness client, and this plugin serves both:
 
 - **A person** manages resources through the client's graphical interface — **Settings → Plugin Management**, **Settings → Skills**, **Settings → Subagents**, **Settings → MCP**, and the **`/` menu** in the input box.
 - **An agent** repairs configuration by reading and editing the underlying files directly with its file tools. The locations and rules below are what an agent uses to find the right file and field.
@@ -38,12 +38,12 @@ There are two ways to work with configuration in the ZCode client, and this plug
 
 ## Instructions / AGENTS.md: merge order
 
-`AGENTS.md` is not a skill, command, hook, MCP server, or plugin. It is the instruction file ZCode loads into the model context for broad behavior rules.
+`AGENTS.md` is not a skill, command, hook, MCP server, or plugin. It is the instruction file Magic Harness loads into the model context for broad behavior rules.
 
 - **User scope**: `~/.magic-harness/AGENTS.md`. Use this for personal defaults that should apply in every workspace, such as preferred language, review style, or local workflow conventions.
 - **Workspace scope**: `<repo>/AGENTS.md`. Use this for repository-specific rules that should be shared with the project, such as architecture boundaries, logging rules, testing requirements, and commit/MR policy.
-- **Resolution**: ZCode searches for the workspace `AGENTS.md` from the current working directory upward until the detected project root. The user default file is resolved from the user's home directory.
-- **Merge order**: when both files exist, ZCode injects `~/.magic-harness/AGENTS.md` first, then the resolved workspace `AGENTS.md`. Workspace instructions appear later, so they can narrow or override broad user defaults for that repository.
+- **Resolution**: Magic Harness searches for the workspace `AGENTS.md` from the current working directory upward until the detected project root. The user default file is resolved from the user's home directory.
+- **Merge order**: when both files exist, Magic Harness injects `~/.magic-harness/AGENTS.md` first, then the resolved workspace `AGENTS.md`. Workspace instructions appear later, so they can narrow or override broad user defaults for that repository.
 - **Migration and creation**: onboarding can copy Claude user memory from `~/.claude/CLAUDE.md` into `~/.magic-harness/AGENTS.md`. The built-in `/init` command targets the current workspace `AGENTS.md`, creating or updating repository instructions instead of editing the user default file.
 
 ## Skills and commands: discovery order (identical)
@@ -83,7 +83,7 @@ Within a level, `.magic-harness` is scanned before `.agents`. A deeper working-d
 
 - Personal, used across projects → user scope (`~/.magic-harness/...` or `~/.agents/...`).
 - Team- or project-shared, versioned with the repository → workspace scope (`<repo>/.magic-harness/...` or `.agents/...`).
-- Shared across tools (Claude, Codex, Cursor) → put skills in `~/.agents/skills/`; to override a same-named skill only inside ZCode, use `.magic-harness/skills/`.
+- Shared across tools (Claude, Codex, Cursor) → put skills in `~/.agents/skills/`; to override a same-named skill only inside Magic Harness, use `.magic-harness/skills/`.
 - Personal default instructions → `~/.magic-harness/AGENTS.md`; repository-specific instructions → `<repo>/AGENTS.md`. If both exist, keep broad preferences in the user file and project rules in the workspace file.
 - MCP servers → user configuration for personal servers, or workspace configuration to share with a team; both scopes connect automatically. Because opening a project now auto-connects the MCP servers declared in its configuration, only open workspaces you trust.
 - Secrets → never commit them to version control; use environment variables or local settings.
