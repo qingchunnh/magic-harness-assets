@@ -1,4 +1,4 @@
-# zcode-guide
+# magic-harness-guide
 
 The official built-in Magic Harness plugin for configuration and self-diagnosis. It is content-only (skills) and enabled by default.
 
@@ -8,7 +8,7 @@ A set of skills that teach both users and agents how to configure Magic Harness'
 
 | Skill | Purpose |
 |---|---|
-| `zcode-configuration-guide` | Overview: the locations, scopes, precedence, and merge rules for MCP servers, commands, skills, hooks, and plugins, plus guidance on where to configure each |
+| `magic-harness-configuration-guide` | Overview: the locations, scopes, precedence, and merge rules for MCP servers, commands, skills, hooks, and plugins, plus guidance on where to configure each |
 | `diagnosing-mcp` | Localize and fix MCP servers that will not connect, have missing tools, are untrusted, or time out |
 | `diagnosing-skills` | Localize and fix skills that are not discovered, do not trigger, are shadowed, or are disabled |
 | `diagnosing-commands` | Localize and fix slash commands that are missing, overridden, have frontmatter errors, or do not substitute arguments |

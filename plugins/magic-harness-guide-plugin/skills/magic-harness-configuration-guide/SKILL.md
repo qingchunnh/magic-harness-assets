@@ -1,5 +1,5 @@
 ---
-name: zcode-configuration-guide
+name: magic-harness-configuration-guide
 description: Use when configuring Magic Harness's extension resources (MCP servers, slash commands, skills, hooks, and plugins) or instruction files such as AGENTS.md in the Magic Harness client. Explains where each resource is configured at the user and workspace scope, the discovery order, precedence, and merge rules, plus guidance on which location to choose. Use when someone asks how to add an MCP server, command, skill, hook, plugin, or AGENTS.md instructions, where a configuration file lives, why a configuration is not taking effect, or needs routing to a specific diagnostic skill.
 ---
 
