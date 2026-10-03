@@ -11,7 +11,7 @@ Magic Harness supports five types of extension resources, plus AGENTS.md instruc
 
 There are two ways to work with configuration in the Magic Harness client, and this plugin serves both:
 
-- **A person** manages resources through the client's graphical interface — **Settings → Plugin Management**, **Settings → Skills**, **Settings → Subagents**, **Settings → MCP**, and the **`/` menu** in the input box.
+- **A person** manages resources through the client's graphical interface — **Settings → Plugin Management**, **Settings → Skills**, **Settings → Subagents**, **Settings → MCP**, **Settings → Global Instructions**, and the **`/` menu** in the input box.
 - **An agent** repairs configuration by reading and editing the underlying files directly with its file tools. The locations and rules below are what an agent uses to find the right file and field.
 
 ## Scopes and the main configuration files
@@ -44,7 +44,7 @@ There are two ways to work with configuration in the Magic Harness client, and t
 - **Workspace scope**: `<repo>/AGENTS.md`. Use this for repository-specific rules that should be shared with the project, such as architecture boundaries, logging rules, testing requirements, and commit/MR policy.
 - **Resolution**: Magic Harness searches for the workspace `AGENTS.md` from the current working directory upward until the detected project root. The user default file is resolved from the user's home directory.
 - **Merge order**: when both files exist, Magic Harness injects `~/.magic-harness/AGENTS.md` first, then the resolved workspace `AGENTS.md`. Workspace instructions appear later, so they can narrow or override broad user defaults for that repository.
-- **Migration and creation**: onboarding can copy Claude user memory from `~/.claude/CLAUDE.md` into `~/.magic-harness/AGENTS.md`. The built-in `/init` command targets the current workspace `AGENTS.md`, creating or updating repository instructions instead of editing the user default file.
+- **Migration and creation**: onboarding can copy Claude user memory from `~/.claude/CLAUDE.md` into `~/.magic-harness/AGENTS.md`. The user default file can also be viewed and edited in the client at **Settings → Global Instructions**; if the file does not exist yet, it is created on save. The built-in `/init` command targets the current workspace `AGENTS.md`, creating or updating repository instructions instead of editing the user default file.
 
 ## Skills and commands: discovery order (identical)
 
