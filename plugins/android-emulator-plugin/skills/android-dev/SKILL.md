@@ -9,9 +9,9 @@ Use this skill when the user wants you to create, modify, build, run, debug, scr
 
 ## Magic Harness Tool Names
 
-This skill assumes the MCP server is configured in zcode as `android_emulator`. In zcode, MCP tools are exposed to the model as `mcp__android_emulator__<tool>`.
+This skill assumes the MCP server is configured in Magic Harness as `android_emulator`. In Magic Harness, MCP tools are exposed to the model as `mcp__android_emulator__<tool>`.
 
-If the server is configured with a different name, use the corresponding visible `mcp__<server>__...` tool names from the active zcode tool list.
+If the server is configured with a different name, use the corresponding visible `mcp__<server>__...` tool names from the active Magic Harness tool list.
 
 ## Default Workflow
 

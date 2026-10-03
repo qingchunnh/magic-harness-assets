@@ -9,9 +9,9 @@ Use this skill when the user wants you to create, modify, build, run, debug, scr
 
 ## Magic Harness Tool Names
 
-This skill assumes the MCP server is configured in zcode as `ios_simulator`. In zcode, MCP tools are exposed to the model as `mcp__ios_simulator__<tool>`.
+This skill assumes the MCP server is configured in Magic Harness as `ios_simulator`. In Magic Harness, MCP tools are exposed to the model as `mcp__ios_simulator__<tool>`.
 
-If the server is configured with a different name, use the corresponding visible `mcp__<server>__...` tool names from the active zcode tool list.
+If the server is configured with a different name, use the corresponding visible `mcp__<server>__...` tool names from the active Magic Harness tool list.
 
 ## Default Workflow
 
