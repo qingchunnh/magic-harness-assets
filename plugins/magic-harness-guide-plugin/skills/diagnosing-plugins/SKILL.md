@@ -9,15 +9,15 @@ Goal: reduce any plugin problem to a single concrete fix.
 
 Plugins are managed in **Settings → Plugin Management** — the **Installed** tab (enable/disable, view details, configure, uninstall) and the **Discover** tab (browse, install, and add marketplaces via the **`+`** button).
 
-> Key facts: enable/disable state is stored under `plugins` in `~/.magic-harness/cli/config.json`; the official marketplace is `magic-harness-plugins-official`; and for cloning marketplace repositories behind a proxy, Magic Harness reads the proxy from `ZCODE_HTTP_PROXY` (a bare `http_proxy` is not used).
+> Key facts: enable/disable state is stored under `plugins` in `~/.magic-harness/cli/config.json`; `magic-harness-plugins-official` is the built-in plugin id suffix — a reserved name, not a marketplace that can be added; and for cloning marketplace repositories behind a proxy, Magic Harness reads the proxy from `ZCODE_HTTP_PROXY` (a bare `http_proxy` is not used).
 
 ## 1. Plugin lifecycle and persistence
 
-- **Discovery sources** (first match wins): inline directories, bundled official plugins, the official plugin cache, and marketplace-installed plugins. The entire subsystem is governed by the `plugins.enabled` master switch.
+- **Discovery sources** (first match wins): inline directories, built-in official plugins (seeded from the application bundle into the plugin cache), and marketplace-installed plugins. The entire subsystem is governed by the `plugins.enabled` master switch.
 - **Manifest location** (probed in order): `.magic-harness-plugin/plugin.json` (preferred), then `.claude-plugin/plugin.json`, then `.codex-plugin/plugin.json`. A plugin's identity is `<name>@<marketplace>`.
 - **Enable/disable resolution**: an explicit enable/disable entry always wins; only when no entry exists does the plugin's default-enabled status apply. A disabled plugin still appears in the list as disabled, but its components resolve to nothing.
-- **Persistence** (all under `plugins` in `~/.magic-harness/cli/config.json`): the enable/disable map, per-plugin configuration values, and the list of suppressed (uninstalled) built-in plugins. Because a built-in plugin ships with the application and cannot be deleted, "uninstalling" one records a suppression marker that hides it from discovery.
-- **Built-in seeding**: on first launch, bundled official plugins are materialized into the plugin cache and registered in the official marketplace listing. This is idempotent and only re-materializes on a content or version change.
+- **Persistence** (all under `plugins` in `~/.magic-harness/cli/config.json`): the enable/disable map and per-plugin configuration values. A built-in plugin ships with the application and cannot be uninstalled — only disabled.
+- **Built-in seeding**: on launch, bundled official plugins are materialized into the plugin cache; their store listings come from definitions bundled with the application, not from any marketplace. This is idempotent and only re-materializes on a content or version change.
 
 ## 2. Manifest schema
 
@@ -40,20 +40,20 @@ Plugins are managed in **Settings → Plugin Management** — the **Installed** 
 1. **A plugin is not listed at all** — its marketplace was never added, so there is no installation record or cache; or `plugins.enabled` is false. → Add the marketplace on the Discover tab and install it, or set `plugins.enabled: true`.
 2. **Adding a marketplace or installing fails to clone** — an error such as `RPC failed`, `timed out`, or `early EOF` (after retries). The clone process did not inherit the shell proxy. → **Set `ZCODE_HTTP_PROXY=http://host:port`** (Magic Harness reads the proxy only from this variable; a bare `http_proxy` is ignored).
 3. **Enabled but its skills or commands are missing** — a component path escapes the plugin root, the plugin is actually disabled, or it is not being treated as enabled where the session reads it. → Open the plugin's detail view to see the invalid component, and make the manifest path relative and inside the plugin root.
-4. **A built-in plugin still appears after being disabled, or returns after uninstalling** — the suppression state was not applied where it was read. → Confirm the plugin id is in the suppressed-built-ins list in `~/.magic-harness/cli/config.json`; restoring it removes that entry and re-seeds.
+4. **A built-in plugin is still active after being disabled** — an explicit enable/disable entry always wins over the default-enabled status, so the disabled entry was not written where the session reads it. → Confirm `plugins.enabledPlugins` maps the plugin id to `false` in `~/.magic-harness/cli/config.json`; a built-in plugin cannot be uninstalled, only disabled.
 5. **Not enabled as expected — listed as enabled but a skill reports "not found" in the session** — the default-enabled set was not applied along the session's discovery path even though the listing shows it enabled. → Verify the plugin's skills are actually available in the session (via **Settings → Skills** and the `/` menu), not only that the plugin shows as enabled.
 6. **Manifest parse error** — the JSON is invalid, is not an object, or has a missing/invalid `name`. → Fix it into a valid object whose `name` matches the pattern.
 7. **Invalid plugin name** — the name violates `^[a-z0-9][a-z0-9._-]{0,127}$`. → Rename.
 8. **Unresolved or cross-marketplace dependency** — a dependency lives in another marketplace not listed in `allowCrossMarketplaceDependenciesOn`, is missing, or forms a cycle. → Add the target marketplace to `allowCrossMarketplaceDependenciesOn`, install the missing dependency's marketplace, or break the cycle. Dependencies are written as `name@marketplace`.
-9. **Version shows 0.0.0 or updates are not detected** — Git/URL plugins often lack a top-level version, and official plugins track updates by commit. → Confirm the installed record and the manifest entry both carry their source revision.
+9. **Version shows 0.0.0 or updates are not detected** — Git/URL plugins often lack a top-level version; built-in plugins have no update channel and are re-seeded only when the application ships a new version. → For a marketplace plugin, confirm the installed record and the manifest entry both carry their source revision; for a built-in plugin, update the application.
 10. **A sensitive configuration value cannot be set** — the field is disabled with a note that it requires secure storage. There is no secure credential store yet. → Remove `sensitive: true`, or provide the value out of band (for example via an environment variable); it cannot be persisted today.
-11. **A `filesystem`/`sea` source reports "unsupported"** — a built-in plugin's cache path is missing or stale. → Re-seed the plugin (clearing its cache entry so it is re-materialized on the next launch).
+11. **A stale `magic-harness-plugins-official` marketplace is still listed in sources** — a leftover record from before the built-in marketplace was removed; its `filesystem`/`sea` entries may report a missing cache. → Remove it from the sources dialog (any marketplace is removable now); the built-in plugins themselves are unaffected because they no longer come from any marketplace.
 
 ## 5. Localization workflow (in order)
 
 1. **Is the subsystem on?** Check `plugins.enabled` (false means everything is empty).
 2. **Look at the plugin.** On the **Installed** tab, confirm whether the plugin is present and enabled; open its detail view for its source, components, and any warnings.
 3. **Classify by presence.** Entirely absent → a marketplace or installation problem (confirm the marketplace was added and the plugin installed). Present but disabled → check the enable state against the default. Present and enabled but broken at runtime → a component-path problem (pitfall 3) or a session-versus-listing divergence (pitfall 5).
-4. **Built-in issues.** Compare the suppressed-built-ins list against what the official marketplace offers, and confirm the plugin cache is current.
+4. **Built-in issues.** Built-in plugins ship with the application and can only be disabled, never uninstalled — check the explicit enable/disable entry, and confirm the seeded plugin cache is current (a missing or stale cache is re-materialized on the next launch).
 5. **Installation and network.** Reproduce the clone with the proxy set, confirming `ZCODE_HTTP_PROXY`, and look for the retryable-error signatures.
 6. **Session-versus-listing divergence.** If the plugin shows enabled but its capabilities are absent in the session, treat it as a discovery-path problem: confirm the plugin's skills and commands actually appear in the session (Settings → Skills, the `/` menu), not merely that the plugin is enabled.

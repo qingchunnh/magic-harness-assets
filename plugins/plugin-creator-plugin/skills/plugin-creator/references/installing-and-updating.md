@@ -24,7 +24,7 @@ The source, marketplace copy and installed copy are different locations. Registr
 1. In the workspace/host where the files were created, open **插件市场 / Plugin Marketplace**.
 2. Click **添加 / Add → 添加插件市场 / Add Plugin Marketplace**.
 3. Paste the actual market root directory provided in the handoff, then click **添加 / Add**. Desktop local users can also choose the directory. For remote work or phone control, paste the directory on the target Host, not a path on the phone or an unrelated local computer.
-4. After success, open **个人 / Personal** and find the actual market name and plugin. Check the displayed name, description and expected version in the plugin details.
+4. After success, back on the marketplace page find the section titled with the actual market name — personal sources appear below the built-in section — and open the plugin. Check the displayed name, description and expected version in the plugin details.
 5. Click **安装 / Install**. After installation, the plugin can also be managed under **设置 → 插件 / Settings → Plugins**. If it is disabled or needs configuration, explain the relevant manual enable/configuration action; preserve the user's choice.
 
 Do not report a registered market or installed plugin merely because its source files exist. For a first delivery, state that addition, installation and trial are pending.
@@ -43,7 +43,7 @@ Then guide the user to:
 
 1. Open the marketplace page's gear button to **市场源 / Marketplace Sources**.
 2. Find the actual dev market and click its refresh button (**刷新该市场 / Refresh this marketplace**). Reuse the existing source instead of adding it again.
-3. Return to **个人 / Personal**, open the plugin details and click **更新 / Update** when available.
+3. Return to the market's section on the marketplace page, open the plugin details and click **更新 / Update** when available.
 4. Confirm the expected version, retain the existing enabled/disabled choice, and run the acceptance example in a new task.
 
 Source edits are not hot reload. A market refresh updates the catalog; the installed plugin still needs its update action.
@@ -61,7 +61,7 @@ Example Chinese handoff:
 >
 > 请在“插件市场 → 添加 → 添加插件市场”粘贴：〈实际市场根目录〉。
 >
-> 添加后在“个人 → 〈实际市场名〉”找到“〈插件展示名〉”，点击安装。
+> 添加后在插件市场页的“〈实际市场名〉”分组中找到“〈插件展示名〉”（个人来源在内置分组下方），点击安装。
 >
 > 安装后新建任务，选择该插件/技能并发送：〈具体验收提示〉。预期：〈可观察结果〉。
 >

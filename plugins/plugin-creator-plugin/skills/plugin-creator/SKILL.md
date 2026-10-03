@@ -41,7 +41,7 @@ Read [manual installation, updates and trial](references/installing-and-updating
 
 ## 5. Guide the user's UI actions
 
-Provide the actual market root directory and instruct the user to open **Plugin Marketplace → Add → Add Plugin Marketplace**, paste that directory, and add it. Then use **Personal → the actual market name → plugin → Install**. Follow the reference for updates and failures.
+Provide the actual market root directory and instruct the user to open **Plugin Marketplace → Add → Add Plugin Marketplace**, paste that directory, and add it. The added market then appears as its own section on the marketplace page (personal sources sit below the built-in section): open the plugin there and click **Install**. Follow the reference for updates and failures.
 
 Give a concrete new-task trial prompt with its expected result. For a skill, tell the user to select the installed plugin/skill from the composer picker after installation. Only provide an installed `SKILL.md` reference if its actual path has been observed; a source path is not an installed reference. Preserve the user's disabled choices and explain any needed manual enable/configuration step.
 

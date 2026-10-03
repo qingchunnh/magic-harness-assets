@@ -46,7 +46,7 @@ A skill is a directory containing a `SKILL.md`. Frontmatter is a `---`-delimited
 7. **Missing SKILL.md** — the directory exists but the skill never appears. → Ensure the file is named exactly `SKILL.md`.
 8. **Description too long (over 1024 characters)** — the skill is dropped. → Trim `description` under 1024 characters and move detail into the body.
 9. **An `.agents` copy is shadowed by a same-named `.magic-harness` copy** — it is discovered but the `.magic-harness` copy is what loads, because `.magic-harness` is scanned first within a level. → Remove the `.magic-harness` duplicate or rename one.
-10. **A plugin skill disappears because the plugin is disabled or suppressed** — a disabled plugin contributes no skill roots. → Enable the plugin in **Settings → Plugin Management**, or remove it from the suppressed-built-ins list.
+10. **A plugin skill disappears because the plugin is disabled** — a disabled plugin contributes no skill roots. → Enable the plugin in **Settings → Plugin Management**.
 11. **Path-versus-name confusion** — a skill is invoked by `name` or `plugin:skill`, not by file path and not with a leading `/`. → Reference the exact name.
 12. **The whole skill subsystem is off** — no skills appear and the skill tool reports it is not configured. The skill feature or `skills.enabled` is false. → Set both to `true` (both default to true).
 
@@ -57,5 +57,5 @@ A skill is a directory containing a `SKILL.md`. Frontmatter is a `---`-delimited
 3. **Check for load failures.** A skill present on disk but not listed usually has a frontmatter problem: missing `name`/`description`, an over-long `description`, or a malformed frontmatter line — pitfalls 6 and 8.
 4. **Which file actually wins?** Walk the discovery order for the name and compare the first matching `SKILL.md` to the file you edited. A mismatch means shadowing — pitfalls 4 and 9.
 5. **Is it disabled?** Look in both configuration files for the skill's absolute path with `enable: false`.
-6. **A plugin skill?** If the name is `plugin:skill`, confirm the plugin is enabled and not suppressed.
+6. **A plugin skill?** If the name is `plugin:skill`, confirm the plugin is enabled.
 7. **Discovered but will not trigger?** Inspect the `description`/`when_to_use`; empty or overly long/truncated → pitfall 3.
