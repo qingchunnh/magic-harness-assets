@@ -19,7 +19,7 @@ There are two ways to work with configuration in the Magic Harness client, and t
 - **User scope** — lives under your home directory and applies to every workspace.
 - **Workspace scope** — lives inside a repository and applies only to that project; can be shared with a team through version control.
 - **User configuration file**: `~/.magic-harness/cli/config.json`. Holds MCP servers, hooks, plugin enable/disable state, and skill/command disable overrides.
-- **Workspace configuration file**: `<repo>/.magic-harness/config.json` (or `<repo>/zcode.json`).
+- **Workspace configuration file**: `<repo>/.magic-harness/config.json` (or `<repo>/magic-harness.json`).
 - **User instruction file**: `~/.magic-harness/AGENTS.md`. Applies as default instructions for every workspace.
 - **Workspace instruction file**: `<repo>/AGENTS.md`. Applies only to that project; the current workspace path is searched upward until the project root.
 
