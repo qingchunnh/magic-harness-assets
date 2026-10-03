@@ -67,12 +67,12 @@ export async function preflightPlugin(path) {
   }
   return errors;
 }
-export async function validatePlugin(path, cli = "zcode") {
+export async function validatePlugin(path, cli = "magic-harness") {
   const errors = await preflightPlugin(path);
   if (errors.length) throw new Error(errors.join("\n"));
   const nodeEntry = /\.[cm]?js$/u.test(cli);
   if (process.platform === "win32" && /\.cmd$/iu.test(cli))
-    throw new Error("Use --cli with zcode.exe or the CLI JavaScript entrypoint on Windows");
+    throw new Error("Use --cli with magic-harness.exe or the CLI JavaScript entrypoint on Windows");
   const args = [...(nodeEntry ? [cli] : []), "plugins", "validate", resolve(path)];
   const code = await new Promise((accept, reject) => {
     const child = spawn(nodeEntry ? process.execPath : cli, args, {
@@ -91,7 +91,7 @@ async function main() {
   });
   if (positionals.length !== 1)
     throw new Error(
-      "Usage: node validate-plugin.mjs <plugin-path> [--cli zcode-executable-or-js-entry]",
+      "Usage: node validate-plugin.mjs <plugin-path> [--cli magic-harness-executable-or-js-entry]",
     );
   await validatePlugin(positionals[0], values.cli);
 }

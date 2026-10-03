@@ -7,7 +7,7 @@ description: Create or update Magic Harness plugin source and a local test marke
 
 Deliver implemented plugin source, a local dev marketplace catalog, and precise UI instructions for the user to add the market, install/update the plugin and try it. Use Magic Harness manifests; the authoring workflow is adapted from Codex's plugin-creator.
 
-The current handoff is manual. Do not register markets, install/update/enable plugins, or publish as part of this skill. Ordinary Desktop users are not expected to have a global `zcode` CLI or `node` command. Use existing file tools when helper runtimes are unavailable; do not ask users to install development tooling to complete the UI steps. A skill reference alone has no plugin requirements: ask what the plugin should do before generating files.
+The current handoff is manual. Do not register markets, install/update/enable plugins, or publish as part of this skill. Ordinary Desktop users are not expected to have a global `magic-harness` CLI or `node` command. Use existing file tools when helper runtimes are unavailable; do not ask users to install development tooling to complete the UI steps. A skill reference alone has no plugin requirements: ask what the plugin should do before generating files.
 
 ## 1. Define the outcome and source
 
@@ -29,7 +29,7 @@ Preserve existing source. Ordinary iteration edits implemented files and increme
 
 Check manifest JSON, declared resource existence, directory/name consistency, path containment and unresolved placeholders. Run the representative capability smoke test with available tools. Report unavailable runtime or credential-dependent checks explicitly.
 
-In an existing developer environment, `scripts/validate-plugin.mjs` can additionally invoke `zcode plugins validate`; use its `--cli` override only when an actual working entry is already known. This is optional developer verification, not a prerequisite or a command to give ordinary Desktop users. File inspection alone does not prove Magic Harness schema validation or runtime execution.
+In an existing developer environment, `scripts/validate-plugin.mjs` can additionally invoke `magic-harness plugins validate`; use its `--cli` override only when an actual working entry is already known. This is optional developer verification, not a prerequisite or a command to give ordinary Desktop users. File inspection alone does not prove Magic Harness schema validation or runtime execution.
 
 ## 4. Prepare the local test marketplace
 

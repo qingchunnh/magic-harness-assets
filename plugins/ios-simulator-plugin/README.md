@@ -5,7 +5,7 @@ Magic Harness plugin for model-driven iOS app development on macOS.
 The package root is the plugin root:
 
 ```bash
-zcode --plugin-dir /absolute/path/to/ios-simulator-plugin
+magic-harness --plugin-dir /absolute/path/to/ios-simulator-plugin
 ```
 
 When enabled, Magic Harness loads:
