@@ -18,10 +18,10 @@ When enabled, Magic Harness loads:
 ## Magic Harness CLI Usage
 
 Magic Harness bundles this package as the official
-`android-emulator@zcode-plugins-official` plugin. Enable the plugin to project
+`android-emulator@magic-harness-plugins-official` plugin. Enable the plugin to project
 its skill, slash command, and MCP server into the session.
 At startup Magic Harness copies the packaged plugin files into
-`~/.magic-harness/cli/plugins/cache/zcode-plugins-official/android-emulator/0.1.0/`
+`~/.magic-harness/cli/plugins/cache/magic-harness-plugins-official/android-emulator/0.1.0/`
 and runs the MCP server from that cache directory. SEA builds rewrite the
 official plugin's Magic Harness manifest to launch the cached MCP server through Magic Harness's
 internal plugin host, so the server uses the embedded Node.js runtime.
@@ -34,10 +34,10 @@ Example `~/.magic-harness/cli/config.json` entry:
 {
   "plugins": {
     "enabledPlugins": {
-      "android-emulator@zcode-plugins-official": true
+      "android-emulator@magic-harness-plugins-official": true
     },
     "options": {
-      "android-emulator@zcode-plugins-official": {
+      "android-emulator@magic-harness-plugins-official": {
         "default_avd": "medium_phone",
         "api_level": "35"
       }

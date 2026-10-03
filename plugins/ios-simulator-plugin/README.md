@@ -17,11 +17,11 @@ When enabled, Magic Harness loads:
 
 ## Magic Harness CLI Usage
 
-Magic Harness bundles this package as the official `ios-simulator@zcode-plugins-official`
+Magic Harness bundles this package as the official `ios-simulator@magic-harness-plugins-official`
 plugin. Enable the plugin to project its skill, slash command, and MCP server
 into the session.
 At startup Magic Harness copies the packaged plugin files into
-`~/.magic-harness/cli/plugins/cache/zcode-plugins-official/ios-simulator/0.1.0/` and
+`~/.magic-harness/cli/plugins/cache/magic-harness-plugins-official/ios-simulator/0.1.0/` and
 runs the MCP server from that cache directory. SEA builds rewrite the official
 plugin's Magic Harness manifest to launch the cached MCP server through Magic Harness's internal
 plugin host, so the server uses the embedded Node.js runtime. Third-party
@@ -33,10 +33,10 @@ Example `~/.magic-harness/cli/config.json` entry:
 {
   "plugins": {
     "enabledPlugins": {
-      "ios-simulator@zcode-plugins-official": true
+      "ios-simulator@magic-harness-plugins-official": true
     },
     "options": {
-      "ios-simulator@zcode-plugins-official": {
+      "ios-simulator@magic-harness-plugins-official": {
         "default_device": "iPhone 16",
         "ui_backend": "auto"
       }
