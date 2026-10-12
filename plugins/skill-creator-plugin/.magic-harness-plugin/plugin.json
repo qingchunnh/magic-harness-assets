@@ -1,8 +1,0 @@
-{
-  "name": "skill-creator",
-  "version": "0.1.0",
-  "description": "Create, edit, and iterate local Magic Harness skills.",
-  "author": { "name": "Z.ai" },
-  "license": "MIT",
-  "skills": "skills"
-}
