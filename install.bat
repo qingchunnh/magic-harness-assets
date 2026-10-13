@@ -47,6 +47,7 @@ if not exist "%DATA_DIR%\" (
 ) else (
     if not exist "%SKILLS_DIR%\" mkdir "%SKILLS_DIR%"
     call :InstallItem "%SRC_ROOT%skills\grilling"                "%SKILLS_DIR%\grilling"                "技能 grilling"
+    call :InstallItem "%SRC_ROOT%skills\handoff"                 "%SKILLS_DIR%\handoff"                 "技能 handoff"
     call :InstallItem "%SRC_ROOT%skills\magic-harness-env-setup" "%SKILLS_DIR%\magic-harness-env-setup" "技能 magic-harness-env-setup"
 )
 echo.
