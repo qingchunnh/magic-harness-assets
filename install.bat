@@ -49,6 +49,8 @@ if not exist "%DATA_DIR%\" (
     call :InstallItem "%SRC_ROOT%skills\grilling"                "%SKILLS_DIR%\grilling"                "技能 grilling"
     call :InstallItem "%SRC_ROOT%skills\handoff"                 "%SKILLS_DIR%\handoff"                 "技能 handoff"
     call :InstallItem "%SRC_ROOT%skills\magic-harness-env-setup" "%SKILLS_DIR%\magic-harness-env-setup" "技能 magic-harness-env-setup"
+    call :InstallItem "%SRC_ROOT%skills\receiving-code-review"   "%SKILLS_DIR%\receiving-code-review"   "技能 receiving-code-review"
+    call :InstallItem "%SRC_ROOT%skills\requesting-code-review"  "%SKILLS_DIR%\requesting-code-review"  "技能 requesting-code-review"
 )
 echo.
 
