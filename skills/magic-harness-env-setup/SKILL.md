@@ -118,9 +118,9 @@ Invoke-WebRequest https://npmmirror.com/mirrors/node/v24.22.1/node-v24.22.1-x64.
 msiexec /i "$env:TEMP\node-24.22.1.msi"
 # 验证 node --version 后继续
 
-# 2. Python 3.14.8：从镜像下载，静默安装到当前用户并加入 PATH
-Invoke-WebRequest https://mirrors.aliyun.com/python-release/windows/python-3.14.8-amd64.exe -OutFile "$env:TEMP\python-3.14.8.exe"
-& "$env:TEMP\python-3.14.8.exe" /quiet InstallAllUsers=0 PrependPath=1
+# 2. Python 3.14.9：从镜像下载，静默安装到当前用户并加入 PATH
+Invoke-WebRequest https://mirrors.aliyun.com/python-release/windows/python-3.14.9-amd64.exe -OutFile "$env:TEMP\python-3.14.9.exe"
+& "$env:TEMP\python-3.14.9.exe" /quiet InstallAllUsers=0 PrependPath=1
 # 验证 python --version 后继续
 
 # 3. uv：Python 就绪后走 PyPI 镜像
