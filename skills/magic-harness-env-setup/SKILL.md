@@ -1,6 +1,6 @@
 ---
 name: magic-harness-env-setup
-description: 为 Magic Harness 配置可选的增强运行环境（Node.js 24.22.1、Python 3.14、uv），并可选配两个 MCP：联网搜索（exa）与电脑控制（windows-mcp，仅支持 Windows）。当用户提到"初始化 magic harness"、"配置 magic harness 环境"、"帮我安装电脑控制"时使用本技能；用户抱怨"电脑控制没反应"、"为什么 AI 不能操作我的电脑"等故障类表述时同样使用，先检查环境是否就绪，即使他们没有明确提到配置环境。环境检查后会逐项询问要安装和配置哪些，可选 MCP 仅在用户明确选择后才执行。这些均为可选，未安装不影响基础功能。
+description: 为 Magic Harness 配置可选的增强运行环境（Node.js 24.22.2、Python 3.14、uv），并可选配两个 MCP：联网搜索（exa）与电脑控制（windows-mcp，仅支持 Windows）。当用户提到"初始化 magic harness"、"配置 magic harness 环境"、"帮我安装电脑控制"时使用本技能；用户抱怨"电脑控制没反应"、"为什么 AI 不能操作我的电脑"等故障类表述时同样使用，先检查环境是否就绪，即使他们没有明确提到配置环境。环境检查后会逐项询问要安装和配置哪些，可选 MCP 仅在用户明确选择后才执行。这些均为可选，未安装不影响基础功能。
 ---
 
 # Magic Harness 环境配置
@@ -21,7 +21,7 @@ Magic Harness 的基础功能开箱即用，不依赖外部工具。但安装以
 
 | 工具    | 为 AI 解锁的能力                                          | 版本策略                                        |
 | ------- | --------------------------------------------------------- | ----------------------------------------------- |
-| Node.js | 运行基于 npm/npx 分发的 MCP 服务器与命令行工具 | 安装时锁定 24.22.1（macOS 装 24.x 即可）；已有 24.x 或更高即可 |
+| Node.js | 运行基于 npm/npx 分发的 MCP 服务器与命令行工具 | 安装时锁定 24.22.2（macOS 装 24.x 即可）；已有 24.x 或更高即可 |
 | Python  | 电脑控制 MCP（windows-mcp）的运行时，以及 Python 脚本、自动化 | 安装时锁定 3.14；已有 ≥3.14 即可                |
 | uv      | 安装和运行 windows-mcp，秒级创建虚拟环境、安装 Python 包   | 任意可用版                                      |
 
@@ -57,7 +57,7 @@ uv --version
 
 - 命令不存在或报错，记为"未安装"；`python` 与 `python3` 只需一个可用。
 - 版本判定（按语义化版本比较，不是字符串比较）：
-  - Node.js 大版本 ≥ 24 → ✅ 符合（如 24.9.0、24.22.1、25.x 均符合）；大版本低于 24 → ⚠️ 版本过低
+  - Node.js 大版本 ≥ 24 → ✅ 符合（如 24.9.0、24.22.2、25.x 均符合）；大版本低于 24 → ⚠️ 版本过低
   - Python ≥ 3.14 → ✅ 符合；低于 3.14 → ⚠️ 版本过低
   - uv 能输出版本号 → ✅ 符合
 - ⚠️ 版本过低的，第 2 步询问用户是否按锁定版本安装 / 升级。Python 3.14 与旧版本共存，安装不破坏现有版本。
@@ -105,7 +105,7 @@ windows-mcp 一行仅在 Windows 出现；非 Windows 平台不展示、不询�
 非中文用户（优先 winget）：
 
 ```powershell
-winget install OpenJS.NodeJS.LTS --version 24.22.1
+winget install OpenJS.NodeJS.LTS --version 24.22.2
 winget install Python.Python.3.14
 winget install astral-sh.uv
 ```
@@ -113,9 +113,9 @@ winget install astral-sh.uv
 中文用户（优先镜像）：
 
 ```powershell
-# 1. Node.js 24.22.1：从镜像下载 msi 后安装（弹 UAC 属正常）
-Invoke-WebRequest https://npmmirror.com/mirrors/node/v24.22.1/node-v24.22.1-x64.msi -OutFile "$env:TEMP\node-24.22.1.msi"
-msiexec /i "$env:TEMP\node-24.22.1.msi"
+# 1. Node.js 24.22.2：从镜像下载 msi 后安装（弹 UAC 属正常）
+Invoke-WebRequest https://npmmirror.com/mirrors/node/v24.22.2/node-v24.22.2-x64.msi -OutFile "$env:TEMP\node-24.22.2.msi"
+msiexec /i "$env:TEMP\node-24.22.2.msi"
 # 验证 node --version 后继续
 
 # 2. Python 3.14.9：从镜像下载，静默安装到当前用户并加入 PATH
@@ -139,7 +139,7 @@ brew install uv
 #### Linux
 
 ```bash
-# Node.js 24.22.1 → Python 3.14 → uv，按顺序安装并逐步验证
+# Node.js 24.22.2 → Python 3.14 → uv，按顺序安装并逐步验证
 # Node / Python 走发行版包管理器，或从官方与镜像站下载 tarball
 # 中文用户镜像域名同上（npmmirror.com / mirrors.aliyun.com）
 curl -LsSf https://astral.sh/uv/install.sh | sh   # 中文用户改用 pip 安装
