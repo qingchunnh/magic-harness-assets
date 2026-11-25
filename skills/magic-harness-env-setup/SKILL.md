@@ -57,7 +57,7 @@ uv --version
 
 - 命令不存在或报错，记为"未安装"；`python` 与 `python3` 只需一个可用。
 - 版本判定（按语义化版本比较，不是字符串比较）：
-  - Node.js 大版本 ≥ 24 → ✅ 符合（如 24.9.0、24.22.2、25.x 均符合）；大版本低于 24 → ⚠️ 版本过低
+  - Node.js 大版本 ≥ 24 → ✅ 符合（如 24.9.0、24.22.3、25.x 均符合）；大版本低于 24 → ⚠️ 版本过低
   - Python ≥ 3.14 → ✅ 符合；低于 3.14 → ⚠️ 版本过低
   - uv 能输出版本号 → ✅ 符合
 - ⚠️ 版本过低的，第 2 步询问用户是否按锁定版本安装 / 升级。Python 3.14 与旧版本共存，安装不破坏现有版本。
@@ -105,7 +105,7 @@ windows-mcp 一行仅在 Windows 出现；非 Windows 平台不展示、不询�
 非中文用户（优先 winget）：
 
 ```powershell
-winget install OpenJS.NodeJS.LTS --version 24.22.2
+winget install OpenJS.NodeJS.LTS --version 24.22.3
 winget install Python.Python.3.14
 winget install astral-sh.uv
 ```
@@ -113,9 +113,9 @@ winget install astral-sh.uv
 中文用户（优先镜像）：
 
 ```powershell
-# 1. Node.js 24.22.2：从镜像下载 msi 后安装（弹 UAC 属正常）
-Invoke-WebRequest https://npmmirror.com/mirrors/node/v24.22.2/node-v24.22.2-x64.msi -OutFile "$env:TEMP\node-24.22.2.msi"
-msiexec /i "$env:TEMP\node-24.22.2.msi"
+# 1. Node.js 24.22.3：从镜像下载 msi 后安装（弹 UAC 属正常）
+Invoke-WebRequest https://npmmirror.com/mirrors/node/v24.22.3/node-v24.22.3-x64.msi -OutFile "$env:TEMP\node-24.22.3.msi"
+msiexec /i "$env:TEMP\node-24.22.3.msi"
 # 验证 node --version 后继续
 
 # 2. Python 3.14.10：从镜像下载，静默安装到当前用户并加入 PATH
